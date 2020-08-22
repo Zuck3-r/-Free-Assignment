@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+testimage:
+  title: hoge
+  file: open("#{Rails.root}/db/fixtures/test.png")
+  key: 1234

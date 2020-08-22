@@ -1,0 +1,19 @@
+<% if flash[:notice] %>
+  <h2><p><%= flash[:notice] %></p></h2>
+<% end %>
+
+
+<% @images.each do |image| %>
+      <div class="flex_box">
+      <h3><%= image.title %></h4><br>
+      <%= image_tag "/get_image/#{image.id}", size: '480x270' %><br>
+      <h4><%= link_to '表示、削除', "/images/#{image.id}" %>
+      <%= link_to '編集', "/images/#{image.id}/edit" %></h4>
+      
+<% end %>
+
+
+<h4><%= link_to '新規追加' , '/images/new' %></h4>
+
+
+<%= paginate @images %>

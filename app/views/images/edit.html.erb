@@ -1,0 +1,24 @@
+<% if flash[:notice] %>
+  <font color="red"><h2><p><%= flash[:notice] %></p></h2></font>
+<% end %>
+
+
+<h3>
+<%= form_for @image , url: {action: :update} do |f| %>
+    <br>
+     <%= f.label :title, 'タイトル' %>
+     <%= f.text_field :title %>
+    <br>
+  <br>
+     <%= f.label :file, 'ファイル' %>
+     <%= f.file_field  :file %>
+  <br>
+  <strong>変更・削除キーを入力してください </strong>
+  <br>
+<%= number_field_tag :key, @word, placeholder: "変更・削除キー(半角数字4桁)" %>
+  <br>
+ <%= f.submit '更新' %>
+<% end %>
+
+<%= link_to '一覧に戻る', '/' %>
+</h3>

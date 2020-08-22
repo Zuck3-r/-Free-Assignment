@@ -1,0 +1,23 @@
+
+<% if flash[:notice] %>
+  <font color="red"><h2><p><%= flash[:notice] %></p></h2></font>
+<% end %>
+
+
+<h3>
+<p>
+    <strong>タイトル:</strong>
+    <%= @image.title %>
+</p>
+<br>
+<p>
+    <strong>画像:</strong><br>
+    <%= image_tag "/get_image/#{@image.id}", size: '480x270' %><br>
+</p>
+
+<%= form_tag({controller:"images",action:"destroy"}, method: :delete) do %>
+  <%= number_field_tag :key, @word, placeholder: "変更・削除キー(半角数字4桁)" %>
+  <%= submit_tag '削除する' %>
+<% end %>
+<%= link_to '一覧に戻る', '/' %>
+</h3>

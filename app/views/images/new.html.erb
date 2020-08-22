@@ -1,0 +1,31 @@
+
+<% if flash[:notice] %>
+  <font color="red"><h2><p><%= flash[:notice] %></p></h2></font>
+<% end %>
+
+<% if @image.errors.present? %>
+  <h3>エラーがあります。</h3>
+    <h4><ul>
+      <% @image.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    
+  <% end %>
+    </ul>
+    </h4>
+<% end %>
+
+<%= form_for @image , url: {action: :create} do |f| %>
+<h3>
+    <%= f.label :title, 'タイトル' %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :file, 'ファイルアップロード' %>
+    <%= f.file_field  :file %>
+    <br>
+    <%= f.label :key, '削除キー(半角数字4桁）' %>
+    <%= f.number_field :key, :size=> "4" %>
+    <br>
+<%= f.submit '登録' %>
+<% end %>
+<%= link_to '戻る', '/' %>
+</h3>
