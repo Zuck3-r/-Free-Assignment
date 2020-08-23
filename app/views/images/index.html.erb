@@ -2,18 +2,37 @@
   <h2><p><%= flash[:notice] %></p></h2>
 <% end %>
 
+<form  method="get">
+  <input type="submit" name="button1" value="ソート解除" />
+  <input type="submit" name="button2" value="昇順" />
+  <input type="submit" name="button3" value="降順" />
+</form>
 
-<% @images.each do |image| %>
-      <div class="flex_box">
-      <h3><%= image.title %></h4><br>
-      <%= image_tag "/get_image/#{image.id}", size: '480x270' %><br>
-      <h4><%= link_to '表示、削除', "/images/#{image.id}" %>
-      <%= link_to '編集', "/images/#{image.id}/edit" %></h4>
-      
+
+<% def show %>
+  <% @images.each do |image| %>
+        <h3><%= image.title %></h4><br>
+        <%= image_tag "/get_image/#{image.id}" %><br>
+        <h4><%= link_to '表示、削除', "/images/#{image.id}" %>
+        <%= link_to '編集', "/images/#{image.id}/edit" %></h4>
+        <h4><p>-------------------------------------------------------------------------------------------------------------------</p></h4>
+  <% end %>
+  <h4><%= link_to '新規追加' , '/images/new' %></h4>
 <% end %>
 
-
-<h4><%= link_to '新規追加' , '/images/new' %></h4>
-
-
-<%= paginate @images %>
+<p>
+<% if params[:button1] %>
+<% @images = Image.all.order(id: "ASC") %> 
+<% show() %>
+<% else if params[:button2] %>
+<% @images = Image.all.order(title: "ASC") %> 
+<% show() %>
+<% else if params[:button3] %>
+<% @images = Image.all.order(title: "DESC") %> 
+<% show() %>
+<% else %>
+<% show() %>
+<% end %>
+</p>
+<% end %>
+<% end %>

@@ -12,8 +12,9 @@
 <br>
 <p>
     <strong>画像:</strong><br>
-    <%= image_tag "/get_image/#{@image.id}", size: '480x270' %><br>
+    <%= image_tag "/get_image/#{@image.id}" %><br>
 </p>
+<%= button_to 'いいね', image_likes_path(@image) %><br>
 
 <%= form_tag({controller:"images",action:"destroy"}, method: :delete) do %>
   <%= number_field_tag :key, @word, placeholder: "変更・削除キー(半角数字4桁)" %>
